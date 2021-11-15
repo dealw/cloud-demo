@@ -6,11 +6,13 @@ spring:
     username: root
     password: 159357www
     driver-class-name: com.mysql.jdbc.Driver
-  application:
-    name: userservice
-  cloud:
-    nacos:
-      server-addr: localhost:8848
+#  application:
+#    name: userservice
+#  cloud:
+#    nacos:
+#      server-addr: localhost:8848
+#      discovery:
+#        cluster-name: GD #广东集群
 mybatis:
   type-aliases-package: cn.itcast.user.pojo
   configuration:
@@ -24,3 +26,5 @@ logging:
 #  client:
 #    service-url:
 #      defaultZone: http://localhost:10086/eureka
+pattern:
+  name: 本地配置name

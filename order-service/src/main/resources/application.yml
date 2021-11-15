@@ -10,7 +10,11 @@ spring:
     name: orderservice
   cloud:
     nacos:
-      server-addr: localhost:8848
+      server-addr: localhost:80
+      discovery:
+        cluster-name: GD
+#        namespace: 9e9d1858-cf2d-48d6-a780-1dc5d968f99a #命名空间
+#        ephemeral: true
 mybatis:
   type-aliases-package: cn.itcast.user.pojo
   configuration:
@@ -26,8 +30,18 @@ logging:
 #      defaultZone: http://localhost:10086/eureka
 userservice:
   ribbon:
-    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule #负载均衡规则
+    NFLoadBalancerRuleClassName: com.alibaba.cloud.nacos.ribbon.NacosRule #负载均衡规则
 ribbon:
   eager-load:
     enabled: true
     clients: userservice
+
+feign:
+  client:
+    config:
+      default:
+        loggerLevel: BASIC
+  httpclient:
+    enabled: true
+    max-connections: 200
+    max-connections-per-route: 50
